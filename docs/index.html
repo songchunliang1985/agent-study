@@ -449,6 +449,181 @@
         body.dark-mode .bookmark-item { border-top-color: var(--dark-border); }
         body.dark-mode .bookmark-item a { color: #999; }
         body.dark-mode .bookmark-item a:hover { color: var(--theme-color); }
+
+        /* --- 6. 文字批注样式 --- */
+        .text-comment-tooltip {
+            position: fixed;
+            z-index: 9999;
+            display: none;
+            background: #42b983;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            white-space: nowrap;
+            transform: translateX(-50%);
+        }
+        .text-comment-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #42b983;
+        }
+        .text-comment-highlight {
+            background: rgba(255, 220, 0, 0.45);
+            border-bottom: 2px solid #e6b800;
+            cursor: pointer;
+            border-radius: 2px;
+            padding: 0 1px;
+            position: relative;
+        }
+        .text-comment-highlight:hover {
+            background: rgba(255, 200, 0, 0.65);
+        }
+        .text-comment-highlight::after {
+            content: '📝';
+            font-size: 0.75em;
+            vertical-align: super;
+            margin-left: 2px;
+        }
+        body.dark-mode .text-comment-highlight {
+            background: rgba(255, 200, 0, 0.2);
+            border-bottom-color: #c9a800;
+        }
+        .text-comment-popup {
+            position: fixed;
+            z-index: 9999;
+            width: 400px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: none;
+            font-size: 14px;
+        }
+        .tcp-header {
+            background: #42b983;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 7px 7px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: move;
+            user-select: none;
+        }
+        .tcp-title { font-weight: 600; font-size: 15px; }
+        .tcp-close { cursor: pointer; font-size: 20px; line-height: 1; }
+        .tcp-close:hover { opacity: 0.7; }
+        .tcp-quoted {
+            padding: 8px 14px;
+            color: #888;
+            font-size: 12px;
+            font-style: italic;
+            border-bottom: 1px solid #eee;
+            background: #fafafa;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .tcp-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 14px;
+            border: none;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            line-height: 1.6;
+            min-height: 100px;
+            resize: vertical;
+            outline: none;
+            font-family: inherit;
+            display: block;
+        }
+        .tcp-footer {
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fafafa;
+            border-radius: 0 0 7px 7px;
+        }
+        .tcp-save {
+            padding: 5px 14px;
+            background: #42b983;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .tcp-save:hover { background: #33a06f; }
+        .tcp-cancel {
+            padding: 5px 10px;
+            background: transparent;
+            color: #aaa;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 4px;
+        }
+        .tcp-cancel:hover { color: #666; border-color: #999; }
+        .tcp-delete {
+            padding: 5px 10px;
+            background: transparent;
+            color: #e74c3c;
+            border: 1px solid #e74c3c;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .tcp-delete:hover { background: #e74c3c; color: white; }
+        body.dark-mode .text-comment-popup { background: #2a2a2a; border-color: #444; }
+        body.dark-mode .tcp-header { background: #2d7a5e; }
+        body.dark-mode .tcp-quoted { background: #222; color: #777; border-bottom-color: #333; }
+        body.dark-mode .tcp-textarea { background: #1e1e1e; color: #ccc; border-bottom-color: #333; }
+        body.dark-mode .tcp-footer { background: #222; }
+        body.dark-mode .tcp-cancel { border-color: #555; color: #777; }
+        .notes-panel {
+            margin: 0 15px 12px 15px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            font-size: 13px;
+        }
+        .notes-panel-header {
+            padding: 8px 12px;
+            background: rgba(0,0,0,0.04);
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        .notes-panel-list { max-height: 260px; overflow-y: auto; }
+        .notes-item {
+            padding: 7px 12px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+        .notes-item:hover { background: rgba(66,185,131,0.08); }
+        .notes-item-text { color: #888; font-size: 11px; font-style: italic; margin-bottom: 3px; }
+        .notes-item-comment { color: #505d6b; font-size: 12px; }
+        .notes-empty { padding: 10px 12px; color: #999; text-align: center; font-size: 12px; }
+        body.dark-mode .notes-panel { border-color: var(--dark-border); }
+        body.dark-mode .notes-panel-header { background: rgba(255,255,255,0.05); color: #ccc; }
+        body.dark-mode .notes-item { border-top-color: var(--dark-border); }
+        body.dark-mode .notes-item-text { color: #666; }
+        body.dark-mode .notes-item-comment { color: #999; }
     </style>
 </head>
 
@@ -960,6 +1135,254 @@
 
                         // 插入到侧边栏最顶部
                         sidebar.insertBefore(btn, sidebar.firstChild);
+                    });
+                },
+
+                // --- 文字批注插件 ---
+                function(hook, vm) {
+                    var TC_KEY = 'ha-text-comments';
+                    var tcTooltip = null, tcPopup = null, tcTextarea = null;
+                    var tcPending = null, tcEditId = null, tcListenerAdded = false;
+
+                    function tcGetAll() {
+                        try { return JSON.parse(localStorage.getItem(TC_KEY) || '[]'); } catch(e) { return []; }
+                    }
+                    function tcSaveAll(arr) { localStorage.setItem(TC_KEY, JSON.stringify(arr)); }
+                    function tcPageItems() { return tcGetAll().filter(function(c) { return c.pagePath === vm.route.path; }); }
+                    function tcGenId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 5); }
+
+                    // ---- Tooltip ----
+                    function tcGetTooltip() {
+                        if (tcTooltip) return tcTooltip;
+                        tcTooltip = document.createElement('div');
+                        tcTooltip.className = 'text-comment-tooltip';
+                        tcTooltip.textContent = '💬 添加笔记';
+                        document.body.appendChild(tcTooltip);
+                        tcTooltip.addEventListener('mousedown', function(e) { e.preventDefault(); });
+                        tcTooltip.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            var sel = window.getSelection();
+                            if (!sel || sel.isCollapsed) return;
+                            var text = sel.toString().trim();
+                            if (!text) return;
+                            tcPending = { text: text, pagePath: vm.route.path };
+                            tcHideTooltip();
+                            sel.removeAllRanges();
+                            tcShowPopup(null, text);
+                        });
+                        return tcTooltip;
+                    }
+                    function tcHideTooltip() { if (tcTooltip) tcTooltip.style.display = 'none'; }
+                    function tcShowTooltip(x, y) {
+                        var tt = tcGetTooltip();
+                        tt.style.left = x + 'px';
+                        tt.style.top  = (y - 44) + 'px';
+                        tt.style.display = 'block';
+                    }
+
+                    // ---- Popup ----
+                    function tcGetPopup() {
+                        if (tcPopup) return tcPopup;
+                        tcPopup = document.createElement('div');
+                        tcPopup.className = 'text-comment-popup';
+                        tcPopup.innerHTML =
+                            '<div class="tcp-header"><span class="tcp-title">📝 我的笔记</span><span class="tcp-close">×</span></div>'
+                            + '<div class="tcp-quoted"></div>'
+                            + '<textarea class="tcp-textarea" placeholder="输入你的笔记..."></textarea>'
+                            + '<div class="tcp-footer">'
+                            + '<button class="tcp-delete">删除笔记</button>'
+                            + '<div><button class="tcp-cancel">取消</button><button class="tcp-save">保存</button></div>'
+                            + '</div>';
+                        document.body.appendChild(tcPopup);
+                        tcTextarea = tcPopup.querySelector('.tcp-textarea');
+
+                        tcPopup.querySelector('.tcp-close').onclick = tcHidePopup;
+                        tcPopup.querySelector('.tcp-cancel').onclick = tcHidePopup;
+
+                        tcPopup.querySelector('.tcp-save').onclick = function() {
+                            var val = tcTextarea.value.trim();
+                            if (!val) return;
+                            var arr = tcGetAll();
+                            if (tcEditId) {
+                                var c = arr.find(function(x) { return x.id === tcEditId; });
+                                if (c) { c.comment = val; c.updatedAt = new Date().toISOString(); }
+                            } else if (tcPending) {
+                                arr.push({ id: tcGenId(), pagePath: tcPending.pagePath, text: tcPending.text, comment: val, createdAt: new Date().toISOString() });
+                            }
+                            tcSaveAll(arr);
+                            tcHidePopup();
+                            tcApplyHighlights();
+                            tcRenderPanel();
+                        };
+
+                        tcPopup.querySelector('.tcp-delete').onclick = function() {
+                            if (!tcEditId) { tcHidePopup(); return; }
+                            tcSaveAll(tcGetAll().filter(function(c) { return c.id !== tcEditId; }));
+                            tcHidePopup();
+                            tcApplyHighlights();
+                            tcRenderPanel();
+                        };
+
+                        // draggable
+                        var hdr = tcPopup.querySelector('.tcp-header'), drag = false, ox = 0, oy = 0;
+                        hdr.addEventListener('mousedown', function(e) {
+                            if (e.target.classList.contains('tcp-close')) return;
+                            drag = true; ox = e.clientX - tcPopup.offsetLeft; oy = e.clientY - tcPopup.offsetTop;
+                        });
+                        document.addEventListener('mousemove', function(e) {
+                            if (drag) { tcPopup.style.left = (e.clientX - ox) + 'px'; tcPopup.style.top = (e.clientY - oy) + 'px'; }
+                        });
+                        document.addEventListener('mouseup', function() { drag = false; });
+
+                        return tcPopup;
+                    }
+
+                    function tcShowPopup(commentId, text) {
+                        var p = tcGetPopup();
+                        tcEditId = commentId;
+                        p.querySelector('.tcp-quoted').textContent = '“' + (text || '').substring(0, 80) + ((text && text.length > 80) ? '…' : '') + '”';
+                        var delBtn = p.querySelector('.tcp-delete');
+                        if (commentId) {
+                            var c = tcGetAll().find(function(x) { return x.id === commentId; });
+                            tcTextarea.value = c ? c.comment : '';
+                            delBtn.style.display = '';
+                        } else {
+                            tcTextarea.value = '';
+                            delBtn.style.display = 'none';
+                        }
+                        p.style.display = 'block';
+                        setTimeout(function() {
+                            p.style.left = Math.max(8, (window.innerWidth - p.offsetWidth) / 2) + 'px';
+                            p.style.top  = Math.max(8, (window.innerHeight - p.offsetHeight) / 3) + 'px';
+                        }, 0);
+                        tcTextarea.focus();
+                    }
+
+                    function tcHidePopup() {
+                        if (tcPopup) tcPopup.style.display = 'none';
+                        tcPending = null; tcEditId = null;
+                    }
+
+                    // ---- Highlight ----
+                    function tcApplyHighlights() {
+                        var article = document.querySelector('article.markdown-section');
+                        if (!article) return;
+                        article.querySelectorAll('.text-comment-highlight').forEach(function(el) {
+                            var p = el.parentNode;
+                            while (el.firstChild) p.insertBefore(el.firstChild, el);
+                            p.removeChild(el);
+                        });
+                        article.normalize();
+                        tcPageItems().forEach(function(c) { tcDoHighlight(article, c.text, c.id); });
+                    }
+
+                    function tcDoHighlight(root, searchText, commentId) {
+                        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+                        var node;
+                        while ((node = walker.nextNode())) {
+                            var skip = false, anc = node.parentNode;
+                            while (anc && anc !== root) {
+                                if (anc.tagName === 'CODE' || anc.tagName === 'PRE' || (anc.classList && anc.classList.contains('text-comment-highlight'))) { skip = true; break; }
+                                anc = anc.parentNode;
+                            }
+                            if (skip) continue;
+                            var idx = node.nodeValue.indexOf(searchText);
+                            if (idx >= 0) {
+                                var before = node.nodeValue.substring(0, idx);
+                                var after  = node.nodeValue.substring(idx + searchText.length);
+                                var mark = document.createElement('mark');
+                                mark.className = 'text-comment-highlight';
+                                mark.dataset.commentId = commentId;
+                                mark.textContent = searchText;
+                                mark.title = '点击查看/编辑笔记';
+                                mark.onclick = function(e) {
+                                    e.stopPropagation();
+                                    var cid = this.dataset.commentId;
+                                    var c = tcGetAll().find(function(x) { return x.id === cid; });
+                                    if (c) tcShowPopup(cid, c.text);
+                                };
+                                var parent = node.parentNode;
+                                if (before) parent.insertBefore(document.createTextNode(before), node);
+                                parent.insertBefore(mark, node);
+                                if (after) parent.insertBefore(document.createTextNode(after), node);
+                                parent.removeChild(node);
+                                return;
+                            }
+                        }
+                    }
+
+                    // ---- Notes panel ----
+                    function tcRenderPanel() {
+                        var panel = document.getElementById('ha-notes-panel');
+                        if (!panel) return;
+                        var list = panel.querySelector('.notes-panel-list');
+                        var items = tcPageItems();
+                        if (items.length === 0) {
+                            list.innerHTML = '<div class="notes-empty">暂无笔记（选中文字可添加）</div>';
+                        } else {
+                            list.innerHTML = items.map(function(c) {
+                                var t  = c.text.substring(0, 40) + (c.text.length > 40 ? '…' : '');
+                                var cm = c.comment.substring(0, 60) + (c.comment.length > 60 ? '…' : '');
+                                return '<div class="notes-item" data-id="' + c.id + '">'
+                                    + '<div class="notes-item-text">“' + t + '”</div>'
+                                    + '<div class="notes-item-comment">' + cm + '</div>'
+                                    + '</div>';
+                            }).join('');
+                            list.querySelectorAll('.notes-item').forEach(function(item) {
+                                item.onclick = function() {
+                                    var id = this.dataset.id;
+                                    var c = tcGetAll().find(function(x) { return x.id === id; });
+                                    if (c) tcShowPopup(c.id, c.text);
+                                };
+                            });
+                        }
+                    }
+
+                    // ---- Selection listener ----
+                    function tcSetupListener() {
+                        document.addEventListener('mouseup', function(e) {
+                            if (tcPopup && tcPopup.style.display === 'block' && tcPopup.contains(e.target)) return;
+                            if (tcTooltip && tcTooltip.contains(e.target)) return;
+                            setTimeout(function() {
+                                var sel = window.getSelection();
+                                if (!sel || sel.isCollapsed || !sel.toString().trim()) { tcHideTooltip(); return; }
+                                var range = sel.getRangeAt(0);
+                                var article = document.querySelector('article.markdown-section');
+                                if (!article || !article.contains(range.commonAncestorContainer)) { tcHideTooltip(); return; }
+                                var rect = range.getBoundingClientRect();
+                                tcShowTooltip(rect.left + rect.width / 2, rect.top);
+                            }, 10);
+                        });
+                        document.addEventListener('click', function(e) {
+                            if (tcTooltip && !tcTooltip.contains(e.target)) tcHideTooltip();
+                            if (tcPopup && tcPopup.style.display === 'block'
+                                && !tcPopup.contains(e.target)
+                                && !(tcTooltip && tcTooltip.contains(e.target))) {
+                                tcHidePopup();
+                            }
+                        });
+                    }
+
+                    hook.doneEach(function() {
+                        tcApplyHighlights();
+                        if (!tcListenerAdded) { tcSetupListener(); tcListenerAdded = true; }
+                        if (!document.getElementById('ha-notes-panel')) {
+                            var sidebar = document.querySelector('.sidebar-nav');
+                            if (sidebar) {
+                                var panel = document.createElement('div');
+                                panel.id = 'ha-notes-panel';
+                                panel.className = 'notes-panel';
+                                panel.innerHTML = '<div class="notes-panel-header">📝 我的笔记 <span class="notes-icon">▼</span></div><div class="notes-panel-list"></div>';
+                                var expanded = true;
+                                panel.querySelector('.notes-panel-header').onclick = function() {
+                                    expanded = !expanded;
+                                    panel.querySelector('.notes-panel-list').style.display = expanded ? '' : 'none';
+                                    panel.querySelector('.notes-icon').textContent = expanded ? '▼' : '▶';
+                                };
+                                sidebar.insertBefore(panel, sidebar.firstChild);
+                            }
+                        }
+                        tcRenderPanel();
                     });
                 },
 
